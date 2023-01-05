@@ -22,9 +22,6 @@ public class CartServiceImpl implements CartService {
     private final CartRepository cartRepository;
     private final CartProductRepository cartProductRepository;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     public CartServiceImpl(CartRepository cartRepository, CartProductRepository cartProductRepository) {
         this.cartRepository = cartRepository;
         this.cartProductRepository = cartProductRepository;

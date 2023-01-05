@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,9 +36,17 @@ public class CartProduct {
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
     private Integer qty;
     private Double price;
+
+    @Column(name = "discount_price")
     private Double discountPrice;
+
+    @Column(name = "total_price")
     private Double totalPrice;
 }
 

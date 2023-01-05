@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,16 +32,22 @@ import java.util.List;
 @Getter()
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
     @Builder.Default
     private List<Cart> carts = new ArrayList<>();
 
+    @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate;
 
+    @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateDate;
+
+    private String name;
+    private String phone;
+    private String email;
+    private String password;
 }
